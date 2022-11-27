@@ -1,5 +1,5 @@
 import os 
-import chess
+import chess.pgn
 
 for fn in os.listdir("data"):
     pgn = open(os.path.join("data", fn))
@@ -8,4 +8,8 @@ for fn in os.listdir("data"):
           game = chess.pgn.read_game(pgn)
         except Exception:
             break
-        print(game)
+        board = game.board()
+        for move in game.mainline_moves():
+            board.push(move)
+            print(board)
+        exit(0)
