@@ -1,0 +1,34 @@
+Build visual chess Board
+build interactive board
+add UI
+
+
+
+
+Chess Engine
+
+Establish search tree
+use neural net to prune the tree
+
+def value network
+v = f(state)
+
+State(Board):
+
+Pieces
+*universal
+**Blank
+**Blank (Enpassant)
+*Pieces
+**Pawn
+**Bishop
+**Knight
+**Rook
+**Rook can Castle
+**Queen
+**King
+
+Extra State:
+* To move
+
+8x8x4 + 1 = 257 bits (vector of 0 or 1)
