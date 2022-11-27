@@ -16,7 +16,7 @@ class State(object):
 
     def value(self):
         #Nueral net goes here
-        return 1 #Drawed game state
+        return 0 #Drawed game state
 
 if __name__ == "__main__":
     s = State()
