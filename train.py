@@ -2,7 +2,7 @@ import os
 import chess.pgn
 from state import State
 
-def get_dataset():
+def get_dataset(num_samples=None):
     X,Y = [], []
     gn = 0
     #pgn in data folder
@@ -23,5 +23,10 @@ def get_dataset():
                 ser = State(board).serialize()[:, :, 0]
                 X.append(ser)
                 Y.append(value)
+            if num_samples is not None and len(X) > num_samples:
+                return X,Y
+    return X,Y
+
+
 if __name__ == "__main__":
-    get_dataset()
+    X,Y = get_dataset(1000)
