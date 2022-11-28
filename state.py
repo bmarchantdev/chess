@@ -1,18 +1,24 @@
 import chess
-import chess.pgn
+import numpy as np
 
 class State(object):
-    def __init__(self):
-        self.board = chess.Board()
+    def __init__(self, board=None):
+        if board is None:
+            self.board = chess.Board()
+        else:
+            self.board = board
     
-    def seralized(self):
+    def serialize(self):
+        state = np.zeros((8,8,5))
+        state[:,:, 4] = (self.board.turn*1.0)
+        print(state)
         # 257 bits (related to neural network)
-        pass
+        pp = self.board.shredder_fen
+        return pp
 
     def edges(self):
         #Board visualization goes here
         return list(self.board.legal_moves)
-
 
     def value(self):
         #Nueral net goes here
