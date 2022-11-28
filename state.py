@@ -9,12 +9,23 @@ class State(object):
             self.board = board
     
     def serialize(self):
-        state = np.zeros((8,8,5))
+        assert self.board.is_valid()
+
+        bstate = np.zeros(64)
+        state = np.zeros((5,8,8))
+        
+        for r in range (8):
+            for c in range(8):
+                state[r, c,0] = (bstate[r*8+c]/8)&1
+                state[r, c,1] = (bstate[r*8+c]/4)&1
+                state[r, c,2] = (bstate[r*8+c]/2)&1
+                state[r, c,3] = (bstate[r*8+c]/1)&1
+
+        #4th column is whos turn
         state[:,:, 4] = (self.board.turn*1.0)
-        print(state)
+
         # 257 bits (related to neural network)
-        pp = self.board.shredder_fen
-        return pp
+        return state.flatten()
 
     def edges(self):
         #Board visualization goes here
