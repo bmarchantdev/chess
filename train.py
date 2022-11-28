@@ -15,6 +15,6 @@ for fn in os.listdir("data"):
         for i, move in enumerate(game.mainline_moves()):
             board.push(move)
             #TODO: extract boards and parse
-            print(value, State(board).serialize())
+            print(value, State(board).serialize()[:, :, 0])
         exit(0)
     break
